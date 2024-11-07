@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Payment Page</h2>
+    <p>Select a payment method:</p>
+    <form id="payment-form">
+        <label>
+            <input type="radio" name="payment-method" value="credit" required>
+            Credit Card
+        </label><br>
+        <label>
+            <input type="radio" name="payment-method" value="debit">
+            Debit Card
+        </label><br>
+        <label>
+            <input type="radio" name="payment-method" value="upi">
+            UPI
+        </label><br>
+        <button type="button" onclick="verifyPayment()">Confirm Payment</button>
+    </form>
+
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+
+    <script>
+        function verifyPayment() {
+            const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked');
+            
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+
+            const paymentMethod = selectedPaymentMethod.value;
+            alert(`Please verify your payment via ${paymentMethod}.`);
+
+            // You can perform a payment verification here (e.g., API call)
+            // After verification, redirect the user accordingly
+            setTimeout(function() {
+                window.location.href = 'index.html';  // Redirect to homepage after verification
+            }, 100); // You can adjust the time to simulate a verification process
+        }
+    </script>
+</body>
+</html>
